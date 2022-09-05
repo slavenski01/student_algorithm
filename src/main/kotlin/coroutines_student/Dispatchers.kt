@@ -1,17 +1,20 @@
 package coroutines_student
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.concurrent.Executors
 
 fun main() {
-    val executorDispatcher = Executors
-        .newWorkStealingPool()
-        .asCoroutineDispatcher()
-
-    GlobalScope.launch(context = executorDispatcher) {
-        println(Thread.currentThread().name)
+    var a = 50
+    runBlocking {
+        delay(1000)
+        a.loadImage { a = 1000 }
+        println(a)
     }
-    Thread.sleep(50)
+}
+
+suspend fun Int.loadImage(
+    onSuccess: () -> Unit
+) {
+    delay(5000)
+    onSuccess.invoke()
 }
