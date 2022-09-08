@@ -16,10 +16,6 @@ fun main() {
     println("${addTwoNumbers(l1, l2)}")
 }
 
-class ListNode(var `val`: Int) {
-    var next: ListNode? = null
-}
-
 fun addTwoNumbers(l1: List<Int>?, l2: List<Int>?): List<Int>? {
     if (l1 == null || l2 == null) return null
     val numbl1 = l1.reversed().joinToString(separator = "").toInt()
