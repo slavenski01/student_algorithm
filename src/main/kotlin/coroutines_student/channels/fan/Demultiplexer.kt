@@ -1,4 +1,4 @@
-package coroutines_student.channels.fan_out
+package coroutines_student.channels.fan
 
 import kotlinx.coroutines.channels.ReceiveChannel
 
