@@ -14,8 +14,11 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.0-native-mt")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.3-native-mt")
     implementation(kotlin("stdlib-jdk8"))
+    // ktor dependencies
+    implementation("io.ktor:ktor-server-netty:2.1.3")
+    implementation("io.ktor:ktor-jackson:1.6.8")
 }
 
 tasks.test {
