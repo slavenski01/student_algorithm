@@ -27,12 +27,30 @@ fun main() {
     val p2 = readLine()?.toInt() ?: return
     val n2 = readLine()?.toInt() ?: return
 
-
+    println(solution(k1, m, k2, p2, n2))
 }
 
 fun solution(k1: Int, m: Int, k2: Int, p2: Int, n2: Int): String {
 
-    //k = p * n +
+    if (m * (p2 - 1) + n2 <= 0) return "-1 -1"
 
-    return "-1"
+    val roomsCnt = if (k2 % (m * (p2 - 1) + n2) == 0) {
+        k2 / (m * (p2 - 1) + n2)
+    } else {
+        (k2 / (m * (p2 - 1) + n2)) + 1
+    }
+
+    var pAns = 0
+    var nAns = 0
+
+    pAns = if ((k1 / roomsCnt) % m == 0) {
+        (k1 / roomsCnt) / m
+    } else {
+        ((k1 / roomsCnt) / m) + 1
+    }
+
+    println(roomsCnt)
+    nAns = (k1 / roomsCnt) - ((pAns - 1) * m)
+
+    return "$pAns $nAns"
 }
