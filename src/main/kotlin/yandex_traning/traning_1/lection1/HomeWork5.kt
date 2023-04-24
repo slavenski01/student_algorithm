@@ -21,11 +21,13 @@ package yandex_traning.traning_1.lection1
  */
 
 fun main() {
-    val k1 = readLine()?.toInt() ?: return
-    val m = readLine()?.toInt() ?: return
-    val k2 = readLine()?.toInt() ?: return
-    val p2 = readLine()?.toInt() ?: return
-    val n2 = readLine()?.toInt() ?: return
+    val string = readLine() ?: return
+    val list = string.split(" ")
+    val k1 = list[0].toInt()
+    val m = list[1].toInt()
+    val k2 = list[2].toInt()
+    val p2 = list[3].toInt()
+    val n2 = list[4].toInt()
 
     println(solution(k1, m, k2, p2, n2))
 }
@@ -34,23 +36,27 @@ fun solution(k1: Int, m: Int, k2: Int, p2: Int, n2: Int): String {
 
     if (m * (p2 - 1) + n2 <= 0) return "-1 -1"
 
+    if (n2 < p2) return "-1 -1"
+
+    if (p2 == 1 && n2 == 1) return "0 1"
+
     val roomsCnt = if (k2 % (m * (p2 - 1) + n2) == 0) {
         k2 / (m * (p2 - 1) + n2)
     } else {
         (k2 / (m * (p2 - 1) + n2)) + 1
     }
 
-    var pAns = 0
-    var nAns = 0
-
-    pAns = if ((k1 / roomsCnt) % m == 0) {
+    val pAns = if ((k1 / roomsCnt) % m == 0) {
         (k1 / roomsCnt) / m
     } else {
         ((k1 / roomsCnt) / m) + 1
     }
 
-    println(roomsCnt)
-    nAns = (k1 / roomsCnt) - ((pAns - 1) * m)
+    val nAns = if (k1 % roomsCnt == 0) {
+        (k1 / roomsCnt) - ((pAns - 1) * m)
+    } else {
+        (k1 / roomsCnt) - ((pAns - 1) * m) + 1
+    }
 
     return "$pAns $nAns"
 }
