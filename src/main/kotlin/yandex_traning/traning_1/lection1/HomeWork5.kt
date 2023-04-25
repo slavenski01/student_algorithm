@@ -34,16 +34,26 @@ fun main() {
 
 fun solution(k1: Int, m: Int, k2: Int, p2: Int, n2: Int): String {
 
+    if (p2 == 1 && k2 == 1 && n2 == 1) return "0 1"
+
+    if (k2 < p2 || k2 < n2) return "-1 -1"
+
+    if (k2 < m * p2) return "-1 -1"
+
+    if (k2 / (m * (p2 - 1) + n2) < 1) return "-1 -1"
+
     if (m * (p2 - 1) + n2 <= 0) return "-1 -1"
-
-    if (n2 < p2) return "-1 -1"
-
-    if (p2 == 1 && n2 == 1) return "0 1"
 
     val roomsCnt = if (k2 % (m * (p2 - 1) + n2) == 0) {
         k2 / (m * (p2 - 1) + n2)
     } else {
         (k2 / (m * (p2 - 1) + n2)) + 1
+    }
+
+    if (k2 > k1) {
+        if (k2 / roomsCnt < k1 / roomsCnt) return "-1 -1"
+    } else {
+        if (k2 / roomsCnt > k1 / roomsCnt) return "-1 -1"
     }
 
     val pAns = if ((k1 / roomsCnt) % m == 0) {
