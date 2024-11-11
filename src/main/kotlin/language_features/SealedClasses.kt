@@ -1,4 +1,5 @@
 package language_features
+
 sealed interface Sale
 sealed class Money: Sale {
     class Rub(val nameMoney: String): Money()
@@ -10,7 +11,21 @@ sealed class Money: Sale {
     }
 }
 
+class Outer(val outerClassName: String = "outerName") {
+
+    init {
+        printAllNames()
+    }
+
+    @JvmInline
+    value class ValueClass(val valueClassName: String)
+
+    fun printAllNames() = println("$outerClassName, ${ValueClass("123").valueClassName}")
+}
+
 fun main() {
     val money = Money.Rub(nameMoney = "214")
+    val outer = Outer()
     println(money.getName())
+    println(outer.printAllNames())
 }
