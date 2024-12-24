@@ -3,9 +3,10 @@ package coroutines_student.flow
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 suspend fun main(): Unit = coroutineScope {
-    val sharedFlow = MutableSharedFlow<Int>(0)
+    val sharedFlow = MutableStateFlow(0)
 
     repeat(10) {
         delay(90)
@@ -13,6 +14,7 @@ suspend fun main(): Unit = coroutineScope {
     }
 
     sharedFlow.collect {
+        delay(100)
         println(it)
     }
 }
