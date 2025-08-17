@@ -67,3 +67,4 @@ config/keystore.properties
 /app/schemas
 
 .build
+*.bin
